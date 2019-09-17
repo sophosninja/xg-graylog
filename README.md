@@ -35,6 +35,14 @@ sudo sh ./installer.sh
 
 You'll be prompted to enter some details and agree to my spelling mistakes and badly written code. Once happy, the scripts will run and automatically configure much of the system for you.
 
+## Important Reads
+
+There are various applications installed as part of the non-production quality deployment. You should read their manuals and guides about security:
+
+* [Mongo](https://hub.docker.com/_/mongo/)
+* [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/docker.htmll/)
+* [Graylog](https://hub.docker.com/r/graylog/graylog/)
+
 ## WARNING
 
 These scripts will uninstall Docker, containerd, and runc from the machine. If you are using these already, then this is not the script for you!

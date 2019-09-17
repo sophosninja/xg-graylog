@@ -101,7 +101,11 @@ chmod +x /usr/local/bin/docker-compose
 # Create required storage directories (logs and configurations will be saved here)
 echo ""
 echo "Creating the persistent storage directories"
-mkdir /graylog/{data/{elasticsearch,journal,mongo},config,plugin} -p
+mkdir /graylog/data/{elasticsearch,journal,mongo} -p
+mkdir /graylog/{config,plugin} -p
+chown 1000:1000 /graylog/data/elasticsearch
+chown 1100:1100 /graylog/data/journal
+chown 1100:1100 /graylog/{config,plugin}
 
 # Install Graylog Service
 echo ""
