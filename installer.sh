@@ -82,7 +82,7 @@ echo ""
 
 # Add the Docker repositories and keys
 echo "Adding the Docker community edition repositories"
-apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
@@ -107,9 +107,9 @@ mkdir /graylog/{data/{elasticsearch,journal,mongo},config,plugin} -p
 echo ""
 echo "Creating the Sophos Graylog Service"
 PWD=$(pwd)
-sed -i "s,/DIRECTORY,$PWD,g" sophos-graylog.conf
-cp sophos-graylog.conf /lib/systemd/system/sophos-graylog.conf
-chmod 644 /lib/systemd/system/sophos-graylog.conf
+sed -i "s,/DIRECTORY,$PWD,g" sophos-graylog.service
+cp sophos-graylog.service /etc/systemd/system/sophos-graylog.service
+chmod 644 /etc/systemd/system/sophos-graylog.service
 
 # Run Graylog docker containers
 echo "Starting the Sophos Graylog docker containers"
