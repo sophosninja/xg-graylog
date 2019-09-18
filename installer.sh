@@ -59,14 +59,14 @@ echo ""
 echo "Set the Graylog admin password"
 echo -n "Enter Password: "
 read PASSWORD
-SHA_PASSWORD=$(echo $PASSWORD | sha256sum | cut -d" " -f1)
+SHA_PASSWORD=$(echo -n $PASSWORD | sha256sum | cut -d" " -f1)
 
 # SET ANSWERS IN THE CONFIGURATION FILES
 echo ""
 echo "Modifying the docker-compose file with your customisations"
 sed -i "s,GRAYLOG_PASSWORD_SECRET:.*,GRAYLOG_PASSWORD_SECRET: $SALT,g" docker-compose.yml
 sed -i "s,GRAYLOG_ROOT_PASSWORD_SHA2:.*,GRAYLOG_ROOT_PASSWORD_SHA2: $SHA_PASSWORD,g" docker-compose.yml
-sed -i "s,GRAYLOG_HTTP_EXTERNAL_URI:.*,GRAYLOG_HTTP_EXTERNAL_URI: \"http://$IP_ADDRESS:9000\",g" docker-compose.yml
+sed -i "s,GRAYLOG_HTTP_EXTERNAL_URI:.*,GRAYLOG_HTTP_EXTERNAL_URI: \"http://$IP_ADDRESS:9000/\",g" docker-compose.yml
 echo ""
 
 # # Make sure the system is up to date first
