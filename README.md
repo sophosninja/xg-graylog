@@ -24,7 +24,7 @@ sudo apt update && sudo apt install git -y && git clone https://github.com/sopho
 Change the permissions on the 'installer.sh' script to allow it to execute:
 
 ```code
-chmod +x installer.sh
+cd xg-graylog && chmod +x installer.sh
 ```
 
 And then run the installer!
