@@ -51,7 +51,7 @@ do
   read SALT
   if [ ${#SALT} -le 15 ]
   then 
-    echo "Still too small! Make it longer!"
+    echo "Still too small! More mashing required!"
   #  else break
   fi
 done
@@ -114,19 +114,43 @@ PWD=$(pwd)
 sed -i "s,/DIRECTORY,$PWD,g" sophos-graylog.service
 cp sophos-graylog.service /etc/systemd/system/sophos-graylog.service
 chmod 644 /etc/systemd/system/sophos-graylog.service
+echo "Enabling Sophos Graylog Service"
+systemctl enable sophos-graylog.service
 
 # Run Graylog docker containers
 echo "Starting the Sophos Graylog docker containers"
 systemctl start sophos-graylog.service
-echo "Browse to http://$IP_ADDRESS:9000 and login as admin. It make take a minute or two for the containers to be deployed."
 
-# To do:
+# Check Graylog is up and running
+while [ ! ${#RESPONSE} ]
+do
+  echo "Checking Graylog is up and running..."
+  RESPONSE=$(curl -u admin:$PASSWORD -sb -H "Accept: application/json" "http://$IP_ADDRESS:9000/api/cluster?pretty=true" | grep -q running)
+  if [ ! ${#RESPONSE} ]
+  then 
+    echo "Graylog isn't running yet... trying again in 10 seconds"
+    sleep 10s
+  fi
+done
+echo "Sophos Graylog is running"
+
+# Install Collector Package
+echo ""
+echo "Installing Sophos customisations..."
+# Sophos content pack - this will create the interfaces
+curl -u admin:$PASSWORD -d "@content-pack-8932f1f0-4f35-4558-833b-ceab441f0532-1.json" -H "Content-Type: application/json" -X POST http://$IP_ADDRESS:9000/api/system/content_packs
+#curl -u admin:$PASSWORD -d '$CONTENT_PACK' -H "Content-Type: application/json" -X POST http://$IP_ADDRESS:9000/api/system/content_packs
+
+# All done, you can now start using it
+echo ""
+echo "Browse to http://$IP_ADDRESS:9000 and login as admin to get started."
+echo ""
+echo "Start sending SYSLOG data to the Grayloy server @ $IP_ADDRESS:5140 (TCP or UDP)"
+
+#################################### TO DO ################################################
+
 # Create an nginx reverse proxy with HTTPS setup to route to the graylog 9000 port (change to expose rather than port)
 # https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-with-ssl-as-a-reverse-proxy-for-jenkins
 # https://dev.to/domysee/setting-up-a-reverse-proxy-with-nginx-and-docker-compose-29jg
 
-# Pull Plugins
-# Might be able to do this for the content pack from Max
-# Create and set SSL Security for Graylog
-# Pull Collector Package
-# Install Collector Package
+

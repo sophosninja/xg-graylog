@@ -1,0 +1,3050 @@
+{
+  "v": 1,
+  "id": "8932f1f0-4f35-4558-833b-ceab441f0532",
+  "rev": 1,
+  "name": "Education Report Pack",
+  "summary": "An Education report pack",
+  "description": "",
+  "vendor": "Sophos",
+  "url": "",
+  "parameters": [],
+  "entities": [
+    {
+      "v": "1",
+      "type": {
+        "name": "input",
+        "version": "1"
+      },
+      "id": "bbe0210e-7585-4dd6-984d-a7b068a5e85c",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Syslog-UDP-5140"
+        },
+        "configuration": {
+          "expand_structured_data": {
+            "@type": "boolean",
+            "@value": false
+          },
+          "recv_buffer_size": {
+            "@type": "integer",
+            "@value": 262144
+          },
+          "port": {
+            "@type": "integer",
+            "@value": 5140
+          },
+          "number_worker_threads": {
+            "@type": "integer",
+            "@value": 2
+          },
+          "force_rdns": {
+            "@type": "boolean",
+            "@value": false
+          },
+          "allow_override_date": {
+            "@type": "boolean",
+            "@value": true
+          },
+          "bind_address": {
+            "@type": "string",
+            "@value": "0.0.0.0"
+          },
+          "store_full_message": {
+            "@type": "boolean",
+            "@value": true
+          }
+        },
+        "static_fields": {},
+        "type": {
+          "@type": "string",
+          "@value": "org.graylog2.inputs.syslog.udp.SyslogUDPInput"
+        },
+        "global": {
+          "@type": "boolean",
+          "@value": true
+        },
+        "extractors": [
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_src_ip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_ip=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Source IP"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_username"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "user_name=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG user_name firewall"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fW_log_component"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "log_component=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG log component"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_status"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "status=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG status firewall"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_dst_ip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "dst_ip=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Destination IP"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_log_id"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "log_id=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG log id"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_remote_interfaceip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "out_interface=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG out interface firewall"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_log_type"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "log_type=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG log type"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_local_interfaceip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "in_interface=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG in interface ip firewall"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_log_subtype"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "log_subtype=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG log subtype"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_time"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "time=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG firewall time"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_timezone"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "timezone=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG firewall timezone"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_src_mac"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_mac=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Source MAC"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_date"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "date=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG firewall date"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "source"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "device=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG device"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_dst_country_code"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "dst_country_code=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Destination County Code"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_device_name"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "device_name=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG device name"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_rule_id"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "fw_rule_id=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Rule ID"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_src_country_code"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_country_code=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Source County Code"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_protocol"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "protocol=\"([^\\\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Protocol"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_src_port"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_port=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Source Port"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_dst_port"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "dst_port=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Destination port"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_dst_ip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "dst_ip=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Destination IP"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_log_id"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "log_id=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG log id"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fW_log_component"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "log_component=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG log component"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_src_ip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_ip=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Source IP"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_local_interfaceip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "in_interface=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG in interface ip firewall"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_status"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "status=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG status firewall"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_timezone"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "timezone=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG firewall timezone"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_remote_interfaceip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "out_interface=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG out interface firewall"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_username"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "user_name=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG user_name firewall"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_log_subtype"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "log_subtype=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG log subtype"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_log_type"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "log_type=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG log type"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_time"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "time=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG firewall time"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "source"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "device=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG device"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_device_name"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "device_name=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG device name"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_date"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "date=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG firewall date"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_src_mac"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_mac=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Source MAC"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_rule_id"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "fw_rule_id=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Rule ID"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_dst_country_code"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "dst_country_code=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Destination County Code"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_src_port"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_port=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Source Port"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_protocol"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "protocol=\"([^\\\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Protocol"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_src_country_code"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_country_code=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Source County Code"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_dst_port"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "device=\"SFW\""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "dst_port=([^\\s]*)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Sophos XG Destination port"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [
+              {
+                "type": {
+                  "@type": "string",
+                  "@value": "TOKENIZER"
+                },
+                "configuration": {}
+              }
+            ],
+            "configuration": {},
+            "source_field": {
+              "@type": "string",
+              "@value": "full_message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "XG Firewall Key"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "COPY_INPUT"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          }
+        ]
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.0.2+1686930"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "report",
+        "version": "1"
+      },
+      "id": "92f23f53-1e23-4a5f-bacd-6b813f147615",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Daily Report"
+        },
+        "subtitle": {
+          "@type": "string",
+          "@value": ""
+        },
+        "logo": "",
+        "description": {
+          "@type": "string",
+          "@value": "Daily report"
+        },
+        "widgets": [
+          {
+            "dashboard_widget_id": {
+              "@type": "string",
+              "@value": "0327dc3b-57dc-4417-b86d-9e89fa902bd9"
+            },
+            "dashboard_id": {
+              "@type": "string",
+              "@value": "2be1de6b-b90a-472f-ada7-7902d9a51e53"
+            }
+          },
+          {
+            "dashboard_widget_id": {
+              "@type": "string",
+              "@value": "09f22314-484e-40ba-af59-d88d1af68ff1"
+            },
+            "dashboard_id": {
+              "@type": "string",
+              "@value": "2be1de6b-b90a-472f-ada7-7902d9a51e53"
+            }
+          },
+          {
+            "dashboard_widget_id": {
+              "@type": "string",
+              "@value": "06a84dec-173d-4bd0-8ff5-c9484f3d1ad6"
+            },
+            "dashboard_id": {
+              "@type": "string",
+              "@value": "2be1de6b-b90a-472f-ada7-7902d9a51e53"
+            }
+          },
+          {
+            "dashboard_widget_id": {
+              "@type": "string",
+              "@value": "ef71db04-0ebb-45a5-b427-44b14dd94b5b"
+            },
+            "dashboard_id": {
+              "@type": "string",
+              "@value": "2be1de6b-b90a-472f-ada7-7902d9a51e53"
+            }
+          },
+          {
+            "dashboard_widget_id": {
+              "@type": "string",
+              "@value": "ecf21f90-e9fa-487d-aee6-0b01591698cf"
+            },
+            "dashboard_id": {
+              "@type": "string",
+              "@value": "2be1de6b-b90a-472f-ada7-7902d9a51e53"
+            }
+          },
+          {
+            "dashboard_widget_id": {
+              "@type": "string",
+              "@value": "ce25455e-833d-4931-a4dc-56dd130d9059"
+            },
+            "dashboard_id": {
+              "@type": "string",
+              "@value": "2be1de6b-b90a-472f-ada7-7902d9a51e53"
+            }
+          },
+          {
+            "dashboard_widget_id": {
+              "@type": "string",
+              "@value": "e27651d6-2fff-4308-b7b9-079cb59c1f8c"
+            },
+            "dashboard_id": {
+              "@type": "string",
+              "@value": "2be1de6b-b90a-472f-ada7-7902d9a51e53"
+            }
+          },
+          {
+            "dashboard_widget_id": {
+              "@type": "string",
+              "@value": "6b18c569-9ab7-47cf-9f73-119515342bfe"
+            },
+            "dashboard_id": {
+              "@type": "string",
+              "@value": "2be1de6b-b90a-472f-ada7-7902d9a51e53"
+            }
+          }
+        ],
+        "positions": [],
+        "scheduling": {
+          "active": {
+            "@type": "boolean",
+            "@value": false
+          },
+          "frequency": null,
+          "frequency_configuration": null,
+          "email_subject": null,
+          "email_body": null,
+          "user_receivers": [],
+          "email_receivers": []
+        }
+      },
+      "constraints": [
+        {
+          "type": "plugin-version",
+          "plugin": "org.graylog.plugins.enterprise.EnterprisePlugin",
+          "version": ">=3.0.2"
+        },
+        {
+          "type": "server-version",
+          "version": ">=3.0.2+1686930"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "stream",
+        "version": "1"
+      },
+      "id": "533426b8-16a7-424a-966d-39421ae9a1cd",
+      "data": {
+        "alarm_callbacks": [],
+        "outputs": [],
+        "remove_matches": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Exclude CDNs"
+        },
+        "stream_rules": [
+          {
+            "type": {
+              "@type": "string",
+              "@value": "CONTAINS"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "domain"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "akamaihd.net"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": true
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          },
+          {
+            "type": {
+              "@type": "string",
+              "@value": "CONTAINS"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "domain"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "cdn"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": true
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          }
+        ],
+        "alert_conditions": [],
+        "matching_type": {
+          "@type": "string",
+          "@value": "OR"
+        },
+        "disabled": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Web traffic"
+        },
+        "default_stream": {
+          "@type": "boolean",
+          "@value": false
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.0.2+1686930"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "stream",
+        "version": "1"
+      },
+      "id": "4a38500c-1948-4ba9-9cb4-5014037a37cd",
+      "data": {
+        "alarm_callbacks": [],
+        "outputs": [],
+        "remove_matches": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "title": {
+          "@type": "string",
+          "@value": "All messages"
+        },
+        "stream_rules": [],
+        "alert_conditions": [
+          {
+            "type": "field_content_value",
+            "title": {
+              "@type": "string",
+              "@value": "Prevent"
+            },
+            "parameters": {
+              "backlog": {
+                "@type": "integer",
+                "@value": 0
+              },
+              "repeat_notifications": {
+                "@type": "boolean",
+                "@value": false
+              },
+              "field": {
+                "@type": "string",
+                "@value": "Category"
+              },
+              "query": {
+                "@type": "string",
+                "@value": "*"
+              },
+              "grace": {
+                "@type": "integer",
+                "@value": 0
+              },
+              "value": {
+                "@type": "string",
+                "@value": "Search Engines"
+              }
+            }
+          },
+          {
+            "type": "field_content_value",
+            "title": {
+              "@type": "string",
+              "@value": "News"
+            },
+            "parameters": {
+              "backlog": {
+                "@type": "integer",
+                "@value": 0
+              },
+              "repeat_notifications": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "field": {
+                "@type": "string",
+                "@value": "category"
+              },
+              "query": {
+                "@type": "string",
+                "@value": "*"
+              },
+              "grace": {
+                "@type": "integer",
+                "@value": 0
+              },
+              "value": {
+                "@type": "string",
+                "@value": "category:\"News\""
+              }
+            }
+          },
+          {
+            "type": "field_content_value",
+            "title": {
+              "@type": "string",
+              "@value": "Blocked Keywords"
+            },
+            "parameters": {
+              "backlog": {
+                "@type": "integer",
+                "@value": 0
+              },
+              "repeat_notifications": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "field": {
+                "@type": "string",
+                "@value": "content_filter_key"
+              },
+              "query": {
+                "@type": "string",
+                "@value": "*"
+              },
+              "grace": {
+                "@type": "integer",
+                "@value": 0
+              },
+              "value": {
+                "@type": "string",
+                "@value": "content_filter_key=\"ExplicitWords_Custom\""
+              }
+            }
+          },
+          {
+            "type": "field_content_value",
+            "title": {
+              "@type": "string",
+              "@value": "Safeguarding"
+            },
+            "parameters": {
+              "backlog": {
+                "@type": "integer",
+                "@value": 0
+              },
+              "repeat_notifications": {
+                "@type": "boolean",
+                "@value": false
+              },
+              "field": {
+                "@type": "string",
+                "@value": "category:\"category:\"Safeguarding\"\""
+              },
+              "query": {
+                "@type": "string",
+                "@value": "*"
+              },
+              "grace": {
+                "@type": "integer",
+                "@value": 0
+              },
+              "value": {
+                "@type": "string",
+                "@value": "category:\"category:\"Safeguarding\"\""
+              }
+            }
+          }
+        ],
+        "matching_type": {
+          "@type": "string",
+          "@value": "AND"
+        },
+        "disabled": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Stream containing all messages"
+        },
+        "default_stream": {
+          "@type": "boolean",
+          "@value": true
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.0.2+1686930"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "dashboard",
+        "version": "1"
+      },
+      "id": "2be1de6b-b90a-472f-ada7-7902d9a51e53",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Test Dashboard"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Test"
+        },
+        "widgets": [
+          {
+            "id": {
+              "@type": "string",
+              "@value": "ecf21f90-e9fa-487d-aee6-0b01591698cf"
+            },
+            "description": {
+              "@type": "string",
+              "@value": "Top Applications"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "QUICKVALUES"
+            },
+            "cache_time": {
+              "@type": "integer",
+              "@value": 10
+            },
+            "time_range": {
+              "type": {
+                "@type": "string",
+                "@value": "relative"
+              },
+              "range": {
+                "@type": "integer",
+                "@value": 1209600
+              }
+            },
+            "configuration": {
+              "query": {
+                "@type": "string",
+                "@value": "log_component:\"Application\" "
+              },
+              "show_pie_chart": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "sort_order": {
+                "@type": "string",
+                "@value": "desc"
+              },
+              "timerange": {
+                "type": {
+                  "@type": "string",
+                  "@value": "relative"
+                },
+                "range": {
+                  "@type": "integer",
+                  "@value": 1209600
+                }
+              },
+              "stacked_fields": {
+                "@type": "string",
+                "@value": ""
+              },
+              "data_table_limit": {
+                "@type": "integer",
+                "@value": 50
+              },
+              "field": {
+                "@type": "string",
+                "@value": "application_name"
+              },
+              "show_data_table": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "limit": {
+                "@type": "integer",
+                "@value": 5
+              }
+            },
+            "position": {
+              "width": {
+                "@type": "integer",
+                "@value": 2
+              },
+              "height": {
+                "@type": "integer",
+                "@value": 5
+              },
+              "row": {
+                "@type": "integer",
+                "@value": 1
+              },
+              "col": {
+                "@type": "integer",
+                "@value": 7
+              }
+            }
+          },
+          {
+            "id": {
+              "@type": "string",
+              "@value": "0327dc3b-57dc-4417-b86d-9e89fa902bd9"
+            },
+            "description": {
+              "@type": "string",
+              "@value": "All Blocked Users"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "QUICKVALUES"
+            },
+            "cache_time": {
+              "@type": "integer",
+              "@value": 10
+            },
+            "time_range": {
+              "type": {
+                "@type": "string",
+                "@value": "relative"
+              },
+              "range": {
+                "@type": "integer",
+                "@value": 0
+              }
+            },
+            "configuration": {
+              "query": {
+                "@type": "string",
+                "@value": "fw_log_type:\"Content Filtering\" AND fw_log_subtype:\"Denied\""
+              },
+              "show_pie_chart": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "sort_order": {
+                "@type": "string",
+                "@value": "desc"
+              },
+              "timerange": {
+                "type": {
+                  "@type": "string",
+                  "@value": "relative"
+                },
+                "range": {
+                  "@type": "integer",
+                  "@value": 0
+                }
+              },
+              "stacked_fields": {
+                "@type": "string",
+                "@value": ""
+              },
+              "data_table_limit": {
+                "@type": "integer",
+                "@value": 250
+              },
+              "field": {
+                "@type": "string",
+                "@value": "user_name"
+              },
+              "show_data_table": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "limit": {
+                "@type": "integer",
+                "@value": 250
+              }
+            },
+            "position": {
+              "width": {
+                "@type": "integer",
+                "@value": 2
+              },
+              "height": {
+                "@type": "integer",
+                "@value": 5
+              },
+              "row": {
+                "@type": "integer",
+                "@value": 1
+              },
+              "col": {
+                "@type": "integer",
+                "@value": 1
+              }
+            }
+          },
+          {
+            "id": {
+              "@type": "string",
+              "@value": "e27651d6-2fff-4308-b7b9-079cb59c1f8c"
+            },
+            "description": {
+              "@type": "string",
+              "@value": "Top Cloud Applications"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "QUICKVALUES"
+            },
+            "cache_time": {
+              "@type": "integer",
+              "@value": 10
+            },
+            "time_range": {
+              "type": {
+                "@type": "string",
+                "@value": "relative"
+              },
+              "range": {
+                "@type": "integer",
+                "@value": 0
+              }
+            },
+            "configuration": {
+              "query": {
+                "@type": "string",
+                "@value": "app_is_cloud:1"
+              },
+              "show_pie_chart": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "sort_order": {
+                "@type": "string",
+                "@value": "desc"
+              },
+              "timerange": {
+                "type": {
+                  "@type": "string",
+                  "@value": "relative"
+                },
+                "range": {
+                  "@type": "integer",
+                  "@value": 0
+                }
+              },
+              "stacked_fields": {
+                "@type": "string",
+                "@value": ""
+              },
+              "data_table_limit": {
+                "@type": "integer",
+                "@value": 50
+              },
+              "field": {
+                "@type": "string",
+                "@value": "application"
+              },
+              "show_data_table": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "limit": {
+                "@type": "integer",
+                "@value": 5
+              }
+            },
+            "position": null
+          },
+          {
+            "id": {
+              "@type": "string",
+              "@value": "6b18c569-9ab7-47cf-9f73-119515342bfe"
+            },
+            "description": {
+              "@type": "string",
+              "@value": "Users matching Keyword block list"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "QUICKVALUES"
+            },
+            "cache_time": {
+              "@type": "integer",
+              "@value": 10
+            },
+            "time_range": {
+              "type": {
+                "@type": "string",
+                "@value": "relative"
+              },
+              "range": {
+                "@type": "integer",
+                "@value": 0
+              }
+            },
+            "configuration": {
+              "query": {
+                "@type": "string",
+                "@value": "content_filter_key=\"BlockedKeywords_Custom\""
+              },
+              "show_pie_chart": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "sort_order": {
+                "@type": "string",
+                "@value": "desc"
+              },
+              "timerange": {
+                "type": {
+                  "@type": "string",
+                  "@value": "relative"
+                },
+                "range": {
+                  "@type": "integer",
+                  "@value": 0
+                }
+              },
+              "stacked_fields": {
+                "@type": "string",
+                "@value": ""
+              },
+              "data_table_limit": {
+                "@type": "integer",
+                "@value": 50
+              },
+              "field": {
+                "@type": "string",
+                "@value": "user_name"
+              },
+              "show_data_table": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "limit": {
+                "@type": "integer",
+                "@value": 5
+              }
+            },
+            "position": {
+              "width": {
+                "@type": "integer",
+                "@value": 2
+              },
+              "height": {
+                "@type": "integer",
+                "@value": 5
+              },
+              "row": {
+                "@type": "integer",
+                "@value": 1
+              },
+              "col": {
+                "@type": "integer",
+                "@value": 3
+              }
+            }
+          },
+          {
+            "id": {
+              "@type": "string",
+              "@value": "ce25455e-833d-4931-a4dc-56dd130d9059"
+            },
+            "description": {
+              "@type": "string",
+              "@value": "Top Blocked Keywords"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "QUICKVALUES"
+            },
+            "cache_time": {
+              "@type": "integer",
+              "@value": 10
+            },
+            "time_range": {
+              "type": {
+                "@type": "string",
+                "@value": "relative"
+              },
+              "range": {
+                "@type": "integer",
+                "@value": 0
+              }
+            },
+            "configuration": {
+              "query": {
+                "@type": "string",
+                "@value": "content_filter_key=\"BlockedKeywords_Custom\""
+              },
+              "show_pie_chart": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "sort_order": {
+                "@type": "string",
+                "@value": "desc"
+              },
+              "timerange": {
+                "type": {
+                  "@type": "string",
+                  "@value": "relative"
+                },
+                "range": {
+                  "@type": "integer",
+                  "@value": 0
+                }
+              },
+              "stacked_fields": {
+                "@type": "string",
+                "@value": ""
+              },
+              "data_table_limit": {
+                "@type": "integer",
+                "@value": 50
+              },
+              "field": {
+                "@type": "string",
+                "@value": "contextmatch"
+              },
+              "show_data_table": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "limit": {
+                "@type": "integer",
+                "@value": 5
+              }
+            },
+            "position": {
+              "width": {
+                "@type": "integer",
+                "@value": 2
+              },
+              "height": {
+                "@type": "integer",
+                "@value": 5
+              },
+              "row": {
+                "@type": "integer",
+                "@value": 1
+              },
+              "col": {
+                "@type": "integer",
+                "@value": 5
+              }
+            }
+          },
+          {
+            "id": {
+              "@type": "string",
+              "@value": "06a84dec-173d-4bd0-8ff5-c9484f3d1ad6"
+            },
+            "description": {
+              "@type": "string",
+              "@value": "Blocked Domains"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "QUICKVALUES"
+            },
+            "cache_time": {
+              "@type": "integer",
+              "@value": 10
+            },
+            "time_range": {
+              "type": {
+                "@type": "string",
+                "@value": "relative"
+              },
+              "range": {
+                "@type": "integer",
+                "@value": 0
+              }
+            },
+            "configuration": {
+              "query": {
+                "@type": "string",
+                "@value": "fw_log_type:\"Content Filtering\" AND fw_log_subtype:\"Denied\""
+              },
+              "show_pie_chart": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "sort_order": {
+                "@type": "string",
+                "@value": "desc"
+              },
+              "timerange": {
+                "type": {
+                  "@type": "string",
+                  "@value": "relative"
+                },
+                "range": {
+                  "@type": "integer",
+                  "@value": 0
+                }
+              },
+              "stacked_fields": {
+                "@type": "string",
+                "@value": ""
+              },
+              "data_table_limit": {
+                "@type": "integer",
+                "@value": 50
+              },
+              "field": {
+                "@type": "string",
+                "@value": "domain"
+              },
+              "show_data_table": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "limit": {
+                "@type": "integer",
+                "@value": 5
+              }
+            },
+            "position": {
+              "width": {
+                "@type": "integer",
+                "@value": 4
+              },
+              "height": {
+                "@type": "integer",
+                "@value": 16
+              },
+              "row": {
+                "@type": "integer",
+                "@value": 6
+              },
+              "col": {
+                "@type": "integer",
+                "@value": 3
+              }
+            }
+          },
+          {
+            "id": {
+              "@type": "string",
+              "@value": "09f22314-484e-40ba-af59-d88d1af68ff1"
+            },
+            "description": {
+              "@type": "string",
+              "@value": "Blocked Categories"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "QUICKVALUES"
+            },
+            "cache_time": {
+              "@type": "integer",
+              "@value": 10
+            },
+            "time_range": {
+              "type": {
+                "@type": "string",
+                "@value": "relative"
+              },
+              "range": {
+                "@type": "integer",
+                "@value": 0
+              }
+            },
+            "configuration": {
+              "query": {
+                "@type": "string",
+                "@value": "fw_log_type:\"Content Filtering\" AND fw_log_subtype:\"Denied\""
+              },
+              "show_pie_chart": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "sort_order": {
+                "@type": "string",
+                "@value": "desc"
+              },
+              "timerange": {
+                "type": {
+                  "@type": "string",
+                  "@value": "relative"
+                },
+                "range": {
+                  "@type": "integer",
+                  "@value": 0
+                }
+              },
+              "stacked_fields": {
+                "@type": "string",
+                "@value": ""
+              },
+              "data_table_limit": {
+                "@type": "integer",
+                "@value": 50
+              },
+              "field": {
+                "@type": "string",
+                "@value": "category"
+              },
+              "show_data_table": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "limit": {
+                "@type": "integer",
+                "@value": 5
+              }
+            },
+            "position": {
+              "width": {
+                "@type": "integer",
+                "@value": 2
+              },
+              "height": {
+                "@type": "integer",
+                "@value": 9
+              },
+              "row": {
+                "@type": "integer",
+                "@value": 6
+              },
+              "col": {
+                "@type": "integer",
+                "@value": 7
+              }
+            }
+          },
+          {
+            "id": {
+              "@type": "string",
+              "@value": "ef71db04-0ebb-45a5-b427-44b14dd94b5b"
+            },
+            "description": {
+              "@type": "string",
+              "@value": "Top Application Categories"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "QUICKVALUES"
+            },
+            "cache_time": {
+              "@type": "integer",
+              "@value": 10
+            },
+            "time_range": {
+              "type": {
+                "@type": "string",
+                "@value": "relative"
+              },
+              "range": {
+                "@type": "integer",
+                "@value": 1209600
+              }
+            },
+            "configuration": {
+              "query": {
+                "@type": "string",
+                "@value": "log_component:\"Application\" "
+              },
+              "show_pie_chart": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "sort_order": {
+                "@type": "string",
+                "@value": "desc"
+              },
+              "timerange": {
+                "type": {
+                  "@type": "string",
+                  "@value": "relative"
+                },
+                "range": {
+                  "@type": "integer",
+                  "@value": 1209600
+                }
+              },
+              "stacked_fields": {
+                "@type": "string",
+                "@value": ""
+              },
+              "data_table_limit": {
+                "@type": "integer",
+                "@value": 50
+              },
+              "field": {
+                "@type": "string",
+                "@value": "application_category"
+              },
+              "show_data_table": {
+                "@type": "boolean",
+                "@value": true
+              },
+              "limit": {
+                "@type": "integer",
+                "@value": 5
+              }
+            },
+            "position": {
+              "width": {
+                "@type": "integer",
+                "@value": 2
+              },
+              "height": {
+                "@type": "integer",
+                "@value": 6
+              },
+              "row": {
+                "@type": "integer",
+                "@value": 6
+              },
+              "col": {
+                "@type": "integer",
+                "@value": 1
+              }
+            }
+          }
+        ]
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.0.2+1686930"
+        }
+      ]
+    }
+  ]
+}
