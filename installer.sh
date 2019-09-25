@@ -124,7 +124,8 @@ echo "Enabling Sophos Graylog Service"
 systemctl enable sophos-graylog.service
 
 # Run Graylog docker containers
-echo "Starting the Sophos Graylog docker containers"
+set +e
+echo "Starting the Sophos Graylog docker containers as a service"
 systemctl start sophos-graylog.service
 
 # Check Graylog is up and running
@@ -137,9 +138,11 @@ do
   else
     echo "Sophos Graylog is not up yet... please wait..."
   fi
-  sleep 10
+  sleep 30
+  echo "This might take a while, we have to download the container images"
 done
 
+set -e
 # Install Collector Package
 echo ""
 echo "Installing Sophos customisations..."
@@ -163,6 +166,8 @@ curl -u admin:$PASSWORD -d "${GRAYLOG_CONTENT_INSTALL}" -H "Content-Type: applic
 
 
 # All done, you can now start using it
+echo ""
+echo ""
 echo ""
 echo "Browse to http://$IP_ADDRESS:9000 and login as 'admin' to get started."
 echo ""
