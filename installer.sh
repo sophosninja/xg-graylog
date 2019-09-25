@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e
 
 #AGREEMENTS
 echo "Welcome to the Sophos Graylog Creator script. This is designed to setup and install the Graylog SIEM locally on a Linux host using Docker containers. 
@@ -47,7 +48,7 @@ echo "Need some salt first..."
 echo ""
 while [ ${#SALT} -le 15 ]
 do
-  echo "Mash the keyboard to create some salt (must be at least 16 characters long):"
+  echo "Mash the keyboard to create some salt (must be at least 16 characters long - Don't use commas):"
   read SALT
   if [ ${#SALT} -le 15 ]
   then 
@@ -122,24 +123,33 @@ echo "Starting the Sophos Graylog docker containers"
 systemctl start sophos-graylog.service
 
 # Check Graylog is up and running
-while [ ! ${#RESPONSE} ]
+while true
 do
-  echo "Checking Graylog is up and running..."
-  RESPONSE=$(curl -u admin:$PASSWORD -sb -H "Accept: application/json" "http://$IP_ADDRESS:9000/api/cluster?pretty=true" | grep -q running)
-  if [ ! ${#RESPONSE} ]
-  then 
-    echo "Graylog isn't running yet... trying again in 10 seconds"
-    sleep 10s
+  STATUS=$(curl -s -o /dev/null -w '%{http_code}' http://$IP_ADDRESS:9000)
+  if [ $STATUS -eq 200 ]; then
+    echo "Sophos Graylog is up and running."
+    break
+  else
+    echo "Sophos Graylog is not up yet... please wait..."
   fi
+  sleep 10
 done
-echo "Sophos Graylog is running"
 
 # Install Collector Package
 echo ""
 echo "Installing Sophos customisations..."
-# Sophos content pack - this will create the interfaces
+# Sophos XG Education Content Pack
 curl -u admin:$PASSWORD -d "@content-pack-8932f1f0-4f35-4558-833b-ceab441f0532-1.json" -H "Content-Type: application/json" -X POST http://$IP_ADDRESS:9000/api/system/content_packs
-#curl -u admin:$PASSWORD -d '$CONTENT_PACK' -H "Content-Type: application/json" -X POST http://$IP_ADDRESS:9000/api/system/content_packs
+
+# Setting up inputs
+#echo "Setting up data inputs for Graylog nodes..."
+#
+#GRAYLOG_INPUT_TCP='{"title":"SYSLOG-TCP","type":"org.graylog2.inputs.syslog.tcp.SyslogTCPInput","configuration":{"bind_address":"0.0.0.0","port":5140,"recv_buffer_size":1048576,"number_worker_threads":4,"tls_cer$
+#GRAYLOG_INPUT_UDP='{"title":"SYSLOG-UDP","type":"org.graylog2.inputs.syslog.udp.SyslogUDPInput","configuration":{"bind_address":"0.0.0.0","port":5140,"recv_buffer_size":262144,"number_worker_threads":4,"override$
+#
+#curl -u admin:$PASSWORD -d "${GRAYLOG_INPUT_TCP}" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS:9000/api/system/inputs
+#curl -u admin:$PASSWORD -d "${GRAYLOG_INPUT_UDP}" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS:9000/api/system/inputs
+
 
 # All done, you can now start using it
 echo ""
