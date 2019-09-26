@@ -1,10 +1,14 @@
-version: '2.2'
+version: '3'
 services:
   graylog-mongo:
+    container_name: sophos_graylog_mongo
+    hostname: sophos_graylog_mongo
     image: "mongo:3"
     volumes:
       - /graylog/data/mongo:/data/db
   graylog-elasticsearch:
+    container_name: sophos_graylog_es
+    hostname: sophos_graylog_es
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.2
     environment:
       - http.host=0.0.0.0
@@ -19,6 +23,8 @@ services:
     volumes:
       - /graylog/data/elasticsearch:/usr/share/elasticsearch/data
   graylog-main:
+    container_name: sophos_graylog_main
+    hostname: sophos_graylog_main
     image: graylog/graylog:3.1
     volumes:
       - /graylog/data/journal:/usr/share/graylog/data/journal
@@ -38,3 +44,13 @@ services:
       - "12201:12201/udp"
       - "5140:5140"
       - "5140:5140/udp"
+  reverse-proxy:
+    container_name: sophos_graylog_proxy
+    hostname: sophos_graylog_proxy
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /graylog/nginx/etc:/etc/nginx
+      - /graylog/nginx/private:/etc/ssl/private

@@ -108,10 +108,27 @@ mkdir -p /graylog/data/journal
 mkdir -p /graylog/data/mongo
 mkdir -p /graylog/config
 mkdir -p /graylog/plugin
+echo ""
+echo "Setting permissions on directories"
 chown 1000:1000 /graylog/data/elasticsearch
 chown 1100:1100 /graylog/data/journal
 chown 1100:1100 /graylog/config
 chown 1100:1100 /graylog/plugin
+
+# Setup the NGINX Reverse Proxy configuration
+echo ""
+echo "Creating NGINX configuration files"
+mkdir -p /graylog/nginx/etc/conf.d
+cp nginx.conf /graylog/nginx/etc/
+cp graylog.conf /graylog/nginx/etc/conf.d/
+cp ssl.conf /graylog/nginx/etc/
+
+echo ""
+echo "Creating SSL keys and certs. You will be prompted to enter some details"
+mkdir -p /graylog/nginx/private
+openssl dhparam -out /graylog/nginx/etc/dhparams.pem 2048
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /graylog/nginx/private/privkey.key -out /graylog/nginx/private/fullchain.pem
+
 
 # Install Graylog Service
 echo ""
@@ -178,3 +195,5 @@ echo "Start sending SYSLOG data to the Grayloy server @ $IP_ADDRESS:5140 (UDP)"
 # Create an nginx reverse proxy with HTTPS setup to route to the graylog 9000 port (change to expose rather than port)
 # https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-with-ssl-as-a-reverse-proxy-for-jenkins
 # https://dev.to/domysee/setting-up-a-reverse-proxy-with-nginx-and-docker-compose-29jg
+
+# Progress logic to be able to resume script on failure
