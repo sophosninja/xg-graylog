@@ -96,7 +96,9 @@ apt-get install docker-ce docker-ce-cli containerd.io -y
 # Install Docker Compose and set to executable
 echo ""
 echo "(Re-)Installing Docker Compose"
+set +e
 rm /usr/local/bin/docker-compose
+set -e
 curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
