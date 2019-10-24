@@ -42,6 +42,7 @@ There are various applications installed as part of the non-production quality d
 * [Mongo](https://hub.docker.com/_/mongo/)
 * [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/docker.htmll/)
 * [Graylog](https://hub.docker.com/r/graylog/graylog/)
+* [Nginx](https://docs.nginx.com/nginx/admin-guide/security-controls/)
 
 ## WARNING
 

@@ -68,6 +68,7 @@ echo "Modifying the docker-compose file with your customisations"
 sed -i "s,GRAYLOG_PASSWORD_SECRET:.*,GRAYLOG_PASSWORD_SECRET: $SALT,g" docker-compose.yml
 sed -i "s,GRAYLOG_ROOT_PASSWORD_SHA2:.*,GRAYLOG_ROOT_PASSWORD_SHA2: $SHA_PASSWORD,g" docker-compose.yml
 sed -i "s,GRAYLOG_HTTP_EXTERNAL_URI:.*,GRAYLOG_HTTP_EXTERNAL_URI: \"http://$IP_ADDRESS:9000/\",g" docker-compose.yml
+sed -i "s,sophos_graylog_proxy,$IP_ADDRESS,g" graylog.conf
 echo ""
 
 # # Make sure the system is up to date first
@@ -124,6 +125,7 @@ mkdir -p /graylog/nginx/etc/conf.d
 cp nginx.conf /graylog/nginx/etc/
 cp graylog.conf /graylog/nginx/etc/conf.d/
 cp ssl.conf /graylog/nginx/etc/
+cp mime.types /graylog/nginx/etc/
 
 echo ""
 echo "Creating SSL keys and certs. You will be prompted to enter some details"
@@ -188,7 +190,7 @@ curl -u admin:$PASSWORD -d "${GRAYLOG_CONTENT_INSTALL}" -H "Content-Type: applic
 echo ""
 echo ""
 echo ""
-echo "Browse to http://$IP_ADDRESS:9000 and login as 'admin' to get started."
+echo "Browse to https://$IP_ADDRESS and login as 'admin' to get started."
 echo ""
 echo "Start sending SYSLOG data to the Grayloy server @ $IP_ADDRESS:5140 (UDP)"
 

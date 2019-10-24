@@ -1,4 +1,4 @@
-version: '3'
+version: '2.4'
 services:
   graylog-mongo:
     container_name: sophos_graylog_mongo
@@ -38,7 +38,7 @@ services:
       - graylog-mongo:mongo
       - graylog-elasticsearch:elasticsearch
     ports:
-      - "9000:9000"
+#      - "9000:9000"
       - "12900:12900"
       - "12201:12201"
       - "12201:12201/udp"
@@ -48,6 +48,8 @@ services:
     container_name: sophos_graylog_proxy
     hostname: sophos_graylog_proxy
     image: nginx
+    links:
+      - graylog-main
     ports:
       - 80:80
       - 443:443
