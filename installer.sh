@@ -152,7 +152,7 @@ systemctl start sophos-graylog.service
 # Check Graylog is up and running
 while true
 do
-  STATUS=$(curl -s -o /dev/null -w '%{http_code}' http://$IP_ADDRESS:9000)
+  STATUS=$(curl -s -k -o /dev/null -w '%{http_code}' https://$IP_ADDRESS)
   if [ $STATUS -eq 200 ]; then
     echo "Sophos Graylog is up and running."
     break
