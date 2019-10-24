@@ -192,6 +192,7 @@ echo "Browse to http://$IP_ADDRESS:9000 and login as 'admin' to get started."
 echo ""
 echo "Start sending SYSLOG data to the Grayloy server @ $IP_ADDRESS:5140 (UDP)"
 
+
 #################################### TO DO ################################################
 
 # Create an nginx reverse proxy with HTTPS setup to route to the graylog 9000 port (change to expose rather than port)

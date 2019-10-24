@@ -44,7 +44,7 @@ services:
       - "12201:12201/udp"
       - "5140:5140"
       - "5140:5140/udp"
-  reverse-proxy:
+  graylog-proxy:
     container_name: sophos_graylog_proxy
     hostname: sophos_graylog_proxy
     image: nginx
