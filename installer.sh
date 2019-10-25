@@ -172,8 +172,8 @@ GRAYLOG_CONTENT_ID=8932f1f0-4f35-4558-833b-ceab441f0532
 GRAYLOG_CONTENT_REV=1
 GRAYLOG_CONTENT_INSTALL='{"parameters":{},"comment":""}'
 
-curl -u admin:$PASSWORD -d "@content-pack-8932f1f0-4f35-4558-833b-ceab441f0532-1.json" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS:9000/api/system/content_packs
-curl -u admin:$PASSWORD -d "${GRAYLOG_CONTENT_INSTALL}" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS:9000/api/system/content_packs/$GRAYLOG_CONTENT_ID/$GRAYLOG_CONTENT_REV/installations
+curl -u admin:$PASSWORD -d -k "@content-pack-8932f1f0-4f35-4558-833b-ceab441f0532-1.json" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS/api/system/content_packs
+curl -u admin:$PASSWORD -d -k "${GRAYLOG_CONTENT_INSTALL}" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS/api/system/content_packs/$GRAYLOG_CONTENT_ID/$GRAYLOG_CONTENT_REV/installations
 
 # Setting up inputs
 #echo "Setting up additional data inputs for Graylog nodes..."
@@ -182,8 +182,8 @@ curl -u admin:$PASSWORD -d "${GRAYLOG_CONTENT_INSTALL}" -H "Content-Type: applic
 #GRAYLOG_INPUT_UDP='{"title":"SYSLOG-UDP","type":"org.graylog2.inputs.syslog.udp.SyslogUDPInput","configuration":{"bind_address":"0.0.0.0","port":5140,"recv_buffer_size":262144,"number_worker_threads":4,"override_source":null,"force_rdns":false,"allow_override_date":true,"store_full_message":false,"expand_structured_data":false},"global":true}'
 
 #
-#curl -u admin:$PASSWORD -d "${GRAYLOG_INPUT_TCP}" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS:9000/api/system/inputs
-#curl -u admin:$PASSWORD -d "${GRAYLOG_INPUT_UDP}" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS:9000/api/system/inputs
+#curl -u admin:$PASSWORD -d "${GRAYLOG_INPUT_TCP}" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS/api/system/inputs
+#curl -u admin:$PASSWORD -d "${GRAYLOG_INPUT_UDP}" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS/api/system/inputs
 
 
 # All done, you can now start using it
@@ -196,9 +196,5 @@ echo "Start sending SYSLOG data to the Grayloy server @ $IP_ADDRESS:5140 (UDP)"
 
 
 #################################### TO DO ################################################
-
-# Create an nginx reverse proxy with HTTPS setup to route to the graylog 9000 port (change to expose rather than port)
-# https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-with-ssl-as-a-reverse-proxy-for-jenkins
-# https://dev.to/domysee/setting-up-a-reverse-proxy-with-nginx-and-docker-compose-29jg
 
 # Progress logic to be able to resume script on failure
