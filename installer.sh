@@ -172,8 +172,8 @@ GRAYLOG_CONTENT_ID=8932f1f0-4f35-4558-833b-ceab441f0532
 GRAYLOG_CONTENT_REV=1
 GRAYLOG_CONTENT_INSTALL='{"parameters":{},"comment":""}'
 
-curl -u admin:$PASSWORD -d -k "@content-pack-8932f1f0-4f35-4558-833b-ceab441f0532-1.json" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS/api/system/content_packs
-curl -u admin:$PASSWORD -d -k "${GRAYLOG_CONTENT_INSTALL}" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST http://$IP_ADDRESS/api/system/content_packs/$GRAYLOG_CONTENT_ID/$GRAYLOG_CONTENT_REV/installations
+curl -u admin:$PASSWORD -k -d "@content-pack-8932f1f0-4f35-4558-833b-ceab441f0532-1.json" -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST https://$IP_ADDRESS/api/system/content_packs
+curl -u admin:$PASSWORD -k -d ${GRAYLOG_CONTENT_INSTALL} -H "Content-Type: application/json" -H "X-Requested-By: Graylog API" -X POST https://$IP_ADDRESS/api/system/content_packs/$GRAYLOG_CONTENT_ID/$GRAYLOG_CONTENT_REV/installations
 
 # Setting up inputs
 #echo "Setting up additional data inputs for Graylog nodes..."
